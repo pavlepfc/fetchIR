@@ -8,9 +8,10 @@ app = Flask(__name__)
 
 # Kreiranje konekcije
 load_dotenv()  # Učitajte varijable iz .env datoteke
-
+db_username = os.getenv('DB_USERNAME')
 db_password = os.getenv('DB_PASSWORD')
-engine = create_engine('mssql+pyodbc://irfin:{DB_PASSWORD}}@SQL-SERV-2022\\DBSERVER2022/finireg?driver=ODBC+Driver+17+for+SQL+Server')
+db_server = os.getenv('DB_SERVER')
+engine = create_engine(f'mssql+pyodbc://{db_username}:{db_password}@{db_server}/finireg?driver=ODBC+Driver+17+for+SQL+Server')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
