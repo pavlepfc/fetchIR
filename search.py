@@ -11,7 +11,8 @@ load_dotenv()  # Učitajte varijable iz .env datoteke
 db_username = os.getenv('DB_USERNAME')
 db_password = os.getenv('DB_PASSWORD')
 db_server = os.getenv('DB_SERVER')
-engine = create_engine(f'mssql+pyodbc://{db_username}:{db_password}@{db_server}/finireg?driver=ODBC+Driver+17+for+SQL+Server')
+db_name = os.getenv('DB_NAME')
+engine = create_engine(f'mssql+pyodbc://{db_username}:{db_password}@{db_server}/{db_name}?driver=ODBC+Driver+17+for+SQL+Server')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
