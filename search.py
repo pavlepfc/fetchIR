@@ -1,11 +1,16 @@
 from flask import Flask, request, render_template
 import pandas as pd
 from sqlalchemy import create_engine
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
 # Kreiranje konekcije
-engine = create_engine('mssql+pyodbc://irfin:Potvrde2025@SQL-SERV-2022\\DBSERVER2022/finireg?driver=ODBC+Driver+17+for+SQL+Server')
+load_dotenv()  # Učitajte varijable iz .env datoteke
+
+db_password = os.getenv('DB_PASSWORD')
+engine = create_engine('mssql+pyodbc://irfin:{DB_PASSWORD}}@SQL-SERV-2022\\DBSERVER2022/finireg?driver=ODBC+Driver+17+for+SQL+Server')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def get_data():
     # Kreiranje SQLAlchemy engine-a za povezivanje sa SQL serverom koristeći SQL autentifikaciju
-    engine = create_engine('mssql+pyodbc://irfin:Potvrde2025@SQL-SERV-2022\\DBSERVER2022/finireg?driver=ODBC+Driver+17+for+SQL+Server')
+    engine = create_engine('mssql+pyodbc://irfin:{DB_PASSWORD}}@SQL-SERV-2022\\DBSERVER2022/finireg?driver=ODBC+Driver+17+for+SQL+Server')
     
     # Izvršavanje SQL upita za povlačenje podataka iz view-a
     sql_query = 'SELECT * FROM IRPotvrde'
