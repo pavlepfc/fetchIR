@@ -4,7 +4,6 @@ from sqlalchemy import create_engine
 from dotenv import load_dotenv
 import os
 from waitress import serve
-#from confirmation import app
 
 app = Flask(__name__)
 
@@ -19,9 +18,10 @@ engine = create_engine(f'mssql+pyodbc://{db_username}:{db_password}@{db_server}/
 @app.route('/')
 def home():
     return render_template('index.html')
-@app.route('/confirmation', methods=['GET', 'POST'])
-def confirmation():
-    query = "SELECT * FROM IRPotvrde"
+
+@app.route('/resers', methods=['GET', 'POST'])
+def resers1():
+    query = "SELECT * FROM ResersUplate"
     df = pd.read_sql(query, engine)
 
     if request.method == 'POST':
@@ -30,7 +30,7 @@ def confirmation():
     else:
         filtered_df = df
 
-    return render_template('confirmation.html', tables=[filtered_df.to_html(classes='data')], titles=filtered_df.columns.values)
+    return render_template('resers.html', tables=[filtered_df.to_html(classes='data')], titles=filtered_df.columns.values)
 
 if __name__ == '__main__':
-    serve(app, host='0.0.0.0', port = 8001)
+    serve(app, host='0.0.0.0', port=8002)
