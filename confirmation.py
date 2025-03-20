@@ -15,8 +15,11 @@ db_server = os.getenv('DB_SERVER')
 db_name = os.getenv('DB_NAME')
 engine = create_engine(f'mssql+pyodbc://{db_username}:{db_password}@{db_server}/{db_name}?driver=ODBC+Driver+17+for+SQL+Server')
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+@app.route('/')
+def home():
+    return render_template('index.html')
+@app.route('/confirmation', methods=['GET', 'POST'])
+def confirmation():
     query = "SELECT * FROM IRPotvrde"
     df = pd.read_sql(query, engine)
 
@@ -26,7 +29,7 @@ def index():
     else:
         filtered_df = df
 
-    return render_template('i2.html', tables=[filtered_df.to_html(classes='data')], titles=filtered_df.columns.values)
+    return render_template('confirmation.html', tables=[filtered_df.to_html(classes='data')], titles=filtered_df.columns.values)
 
 if __name__ == '__main__':
-    serve(app, host='0.0.0.0.', port = 8080)
+    serve(app, host='0.0.0.0', port = 8080)

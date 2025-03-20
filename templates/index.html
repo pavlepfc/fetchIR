@@ -2,38 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>IR uplate</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <title>Pomocna aplikacija za uplate</title>
+    <style>
+      .button {
+        background-color: #4caf50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <h1 class="mt-5">IR uplate za medjunarodne potvrde</h1>
-      <table class="table table-bordered mt-3">
-        <thead>
-          <tr>
-            {% for column in data.columns %}
-            <th>{{ column }}</th>
-            {% endfor %}
-          </tr>
-        </thead>
-        <tbody>
-          {% for row in data.iterrows() %}
-          <tr>
-            {% for value in row[1] %}
-            <td>{{ value }}</td>
-            {% endfor %}
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <h1>Izaberite tip uplate</h1>
+    <p>Kliknite na dugme da izaberete tip uplate:</p>
+    <form action="/confirmation">
+      <button class="button" type="submit">Potvrde</button>
+    </form>
   </body>
 </html>
